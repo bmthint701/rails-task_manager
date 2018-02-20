@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>All Tasks</h1>
+  <ul>
+      <% @tasks.each do |task| %>
+          <% status = '{X}' if task.completed %>
+          <% status = '{ }' if !task.completed %>
+          <li>
+          <%= link_to "#{task.title} #{status}", task_path(task) %>
+          <%= link_to ' - Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
+          </li>
+      <% end %>
+  </ul>
+  <hr>
+  <%= link_to 'Add a task', tasks_new_path %>
+</body>
+</html>
